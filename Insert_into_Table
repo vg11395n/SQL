@@ -1,0 +1,4 @@
+/* Insert into Table */
+insert into Employee values (1,100);
+insert into Employee values (2,200);
+insert into Employee values (3,300);
