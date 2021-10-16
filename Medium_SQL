@@ -1,6 +1,7 @@
 /* Create Table */
 create table Employee (id int, salary int);
 
+/* Generic Syntax for reference
 CREATE TABLE STUDENTS (  
 ID      INT          NOT NULL,  
 NAME    VARCHAR (20) NOT NULL,  
@@ -8,18 +9,55 @@ AGE     INT          NOT NULL,
 ADDRESS CHAR (25),  
 PRIMARY KEY (ID)  
 );  
-
+*/
 
 /* Create Table */
 insert into Employee values (1,100);
 insert into Employee values (2,200);
 insert into Employee values (3,300);
 
+ /* Question : Find Second Highest Salary
+
+Example 1:
+Input: 
+Employee table:
++----+--------+
+| Id | Salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+Output: 
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+
+
+Example 2:
+Input: 
+Employee table:
++----+--------+
+| Id | Salary |
++----+--------+
+| 1  | 100    |
++----+--------+
+Output: 
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| Null                |
++---------------------+
+
+*/
+
 /* Second Highest Salary */
-SELECT salary SecondHighestSalary 
-FROM (
-  		select *, 
-  		ROW_NUMBER() OVER (order by Salary aSC) rn 
-  		from Employee
-	  ) x
- WHERE x.rn = 2;
+select ISNULL((
+    SELECT Salary
+	FROM (
+            select *, 
+            ROW_NUMBER() OVER (order by Salary ASC) rn 
+            from Employee
+         ) x 
+	where x.rn = 4), NULL) as SecondHighestSalary;
