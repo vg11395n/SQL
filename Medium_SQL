@@ -1,0 +1,16 @@
+
+
+
+/* Create Table */
+insert into Employee values (1,100);
+insert into Employee values (2,200);
+insert into Employee values (3,300);
+
+/* Second Highest Salary */
+SELECT salary SecondHighestSalary 
+FROM (
+  		select *, 
+  		ROW_NUMBER() OVER (order by Salary aSC) rn 
+  		from Employee
+	  ) x
+ WHERE x.rn = 2;
